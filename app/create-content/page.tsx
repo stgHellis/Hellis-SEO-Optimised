@@ -1,19 +1,11 @@
-'use client';
+"use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 
-export default function DashboardPage() {
+export default function CreateContentPage() {
   const [activeTab, setActiveTab] = useState<'blog' | 'ecommerce'>('blog');
-  const [currentTime, setCurrentTime] = useState('');
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date().toISOString());
-    }, 1000);
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <div className="min-h-screen bg-[#F5F5DC] flex">
@@ -22,7 +14,7 @@ export default function DashboardPage() {
         <div className="text-2xl font-semibold mb-10">Hellis SEO</div>
         
         <nav className="space-y-2">
-          <Link href="/dashboard" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg bg-gray-100">
+          <Link href="/dashboard" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
             <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
@@ -40,7 +32,7 @@ export default function DashboardPage() {
             </svg>
             Articles
           </Link>
-          <Link href="/create-content" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+          <Link href="/create-content" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg bg-gray-100">
             <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
             </svg>
@@ -83,63 +75,35 @@ export default function DashboardPage() {
 
       {/* Main Content */}
       <div className="flex-1 ml-64 p-8">
+        {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-semibold">Dashboard</h1>
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <Link href="/" className="text-purple-600 text-lg hover:text-purple-700">Dashboard</Link>
+            <span className="text-lg">/</span>
+            <span className="text-lg">Create Content</span>
           </div>
           <div className="flex items-center gap-4">
-          <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
+            <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
             <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
               Upgrade Plan
             </Button>
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">
-              Create Content
-            </Button>
           </div>
         </div>
 
-        <div className="bg-purple-600 p-4 rounded-xl text-white flex justify-between items-center mb-12 mt-12">
-          <span>⚡ Special Offer: Get 40% off on all plans!</span>
-          <Button variant="secondary" className="bg-white text-purple-600 hover:bg-gray-100">
-            Upgrade Now
-          </Button>
-        </div>
-
-        <h2 className="text-xl font-semibold mb-2">Welcome back!</h2>
-        <p className="text-gray-600 mb-8">Here's an overview of your content performance</p>
-
-        <div className="grid grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-xl">
-            <div className="text-3xl font-bold">0</div>
-            <div className="text-gray-500">Total Articles</div>
-          </div>
-          <div className="bg-white p-6 rounded-xl">
-            <div className="text-3xl font-bold">0</div>
-            <div className="text-gray-500">Unpublished</div>
-          </div>
-          <div className="bg-white p-6 rounded-xl">
-            <div className="text-3xl font-bold">0</div>
-            <div className="text-gray-500">In Progress</div>
-          </div>
-          <div className="bg-white p-6 rounded-xl">
-            <div className="text-3xl font-bold">1</div>
-            <div className="text-gray-500">Projects</div>
-          </div>
-        </div>
-
-        <div className="bg-white p-8 rounded-xl">
+        {/* Content Section */}
+        <div className="p-8 rounded-xl bg-[#F5F5DC]">
           <h2 className="text-3xl font-semibold text-gray-800 mb-2">Let's write some content</h2>
           <p className="text-gray-600 text-xl mb-6">Choose one of our models and create outstanding articles.</p>
           
-          <div className="flex gap-2 mb-8">
+          <div className="flex gap-2 mb-10 mt-16">
             <button 
-              className={`pb-2 ${activeTab === 'blog' ? 'text-purple-600 border-b-2 border-purple-600' : 'text-gray-500'}`}
+              className={`pb-2 ${activeTab === 'blog' ? 'text-purple-600 text-lg font-semibold border-b-2 border-purple-600' : 'text-gray-500'}`}
               onClick={() => setActiveTab('blog')}
             >
               Blog Articles
             </button>
             <button 
-              className={`pb-2 ${activeTab === 'ecommerce' ? 'text-purple-600 border-b-2 border-purple-600' : 'text-gray-500'}`}
+              className={`pb-2 ${activeTab === 'ecommerce' ? 'text-purple-600 text-lg font-semibold border-b-2 border-purple-600' : 'text-gray-500'}`}
               onClick={() => setActiveTab('ecommerce')}
             >
               E-commerce
@@ -151,7 +115,7 @@ export default function DashboardPage() {
               <>
                 {/* Fast Writer Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Smart text formatting
                     </span>
@@ -227,7 +191,7 @@ export default function DashboardPage() {
 
                 {/* Neuron Writer Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white border rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <div className="absolute -top-3 -right-3 bg-gray-800 text-white px-4 py-1 rounded-full transform rotate-12">
                       NEURON
                     </div>
@@ -267,7 +231,7 @@ export default function DashboardPage() {
               <>
                 {/* E-commerce Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       E-commerce
                     </span>
@@ -302,7 +266,7 @@ export default function DashboardPage() {
 
                 {/* Product Description Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Product Descriptions
                     </span>
@@ -337,7 +301,7 @@ export default function DashboardPage() {
 
                 {/* Meta Description Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Meta Content
                     </span>
