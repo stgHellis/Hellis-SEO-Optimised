@@ -1,9 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
+import { Navbar } from '@/components/shared/navbar';
 
 const About = () => {
   return (
     <div className="bg-white">
+      <Navbar />
       <div className="relative isolate">
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
           {/* Hero section */}
@@ -106,19 +108,19 @@ const team = [
     name: 'John Smith',
     role: 'CEO & Founder',
     bio: 'With over 15 years of experience in digital marketing and SEO.',
-    imageUrl: '/team/person1.jpg',
+    imageUrl: '/images/Focus5.png',
   },
   {
-    name: 'Lisa Chen',
+    name: 'Lisa Chenny',
     role: 'Head of SEO Strategy',
     bio: 'Expert in technical SEO and content optimization.',
-    imageUrl: '/team/person2.jpg',
+    imageUrl: '/images/Focus7.png',
   },
   {
     name: 'Mark Johnson',
     role: 'Technical Lead',
     bio: 'Specializes in SEO tools development and automation.',
-    imageUrl: '/team/person3.jpg',
+    imageUrl: '/images/Focus12.png',
   },
 ];
 

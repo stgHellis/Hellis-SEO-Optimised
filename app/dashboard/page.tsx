@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { Sidebar } from "@/components/Sidebar";
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState<'blog' | 'ecommerce'>('blog');
@@ -17,75 +18,13 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#F5F5DC] flex">
-      {/* Sidebar */}
-      <div className="w-64 bg-white h-screen fixed p-5 border-r border-gray-200">
-        <div className="text-2xl font-semibold mb-10">Hellis SEO</div>
-        
-        <nav className="space-y-2">
-          <Link href="/dashboard" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg bg-gray-100">
-            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            Dashboard
-          </Link>
-          <Link href="/projects" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            Projects
-          </Link>
-          <Link href="/articles" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Articles
-          </Link>
-          <Link href="/create-content" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Create Content
-          </Link>
-        </nav>
-
-        <div className="space-y-1">
-          <div className="text-lg font-semibold text-gray-400 uppercase tracking-wider mb-3 mt-3">
-            TOOLS
-          </div>
-          <Link href="/create" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-            Image Generator
-          </Link>
-          <Link href="/create" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-            Indexing API
-          </Link>
-          <Link href="/create" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-            PBN Management
-          </Link>
-          <Link href="/settings" className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            Settings
-          </Link>
-        </div>
-
-        {/* User Info */}
-        <div className="absolute bottom-5 left-5 right-5 flex items-center px-4 py-3 bg-gray-100 rounded-lg">
-          <svg className="w-8 h-8 text-gray-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <div className="flex flex-col">
-            <span className="text-sm text-gray-600">user@example.com</span>
-          </div>
-        </div>
-      </div>
+      <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 ml-64 p-8">
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-10 mt-5">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-semibold">Dashboard</h1>
+            <h1 className="text-4xl font-semibold">Dashboard</h1>
           </div>
           <div className="flex items-center gap-4">
           <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
@@ -98,48 +37,105 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-purple-600 p-4 rounded-xl text-white flex justify-between items-center mb-12 mt-12">
+        <div className="bg-purple-600 p-4 rounded-xl text-white flex justify-between items-center mb-16 mt-20">
           <span>⚡ Special Offer: Get 40% off on all plans!</span>
           <Button variant="secondary" className="bg-white text-purple-600 hover:bg-gray-100">
             Upgrade Now
           </Button>
         </div>
 
-        <h2 className="text-xl font-semibold mb-2">Welcome back!</h2>
+        <h2 className="text-2xl font-semibold mb-2 mt-8">Welcome back!</h2>
         <p className="text-gray-600 mb-8">Here's an overview of your content performance</p>
 
         <div className="grid grid-cols-4 gap-6 mb-8">
           <div className="bg-white p-6 rounded-xl">
-            <div className="text-3xl font-bold">0</div>
-            <div className="text-gray-500">Total Articles</div>
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <div className="text-[40px] font-bold">0</div>
+                <div className="text-gray-600">Total</div>
+              </div>
+              <div className="bg-[#F8F5FF] p-3 rounded-lg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 2V5M16 2V5M3.5 9.09H20.5M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z" stroke="#7C3AED" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <Link href="/articles" className="block w-full">
+              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center">Go to articles</button>
+            </Link>
           </div>
+
           <div className="bg-white p-6 rounded-xl">
-            <div className="text-3xl font-bold">0</div>
-            <div className="text-gray-500">Unpublished</div>
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <div className="text-[40px] font-bold">0</div>
+                <div className="text-gray-600">Unpublished</div>
+              </div>
+              <div className="bg-[#F8F5FF] p-3 rounded-lg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 8V13M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M11.995 16H12.004" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <Link href="/publish" className="block w-full">
+              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center">Publish articles</button>
+            </Link>
           </div>
+
           <div className="bg-white p-6 rounded-xl">
-            <div className="text-3xl font-bold">0</div>
-            <div className="text-gray-500">In Progress</div>
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <div className="text-[40px] font-bold">0</div>
+                <div className="text-gray-600">In progress</div>
+              </div>
+              <div className="bg-[#F8F5FF] p-3 rounded-lg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M15.9965 12H16.0054M11.9955 12H12.0045M8.00439 12H8.01339" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <Link href="/status" className="block w-full">
+              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center">View status</button>
+            </Link>
           </div>
+
           <div className="bg-white p-6 rounded-xl">
-            <div className="text-3xl font-bold">1</div>
-            <div className="text-gray-500">Projects</div>
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <div className="text-[40px] font-bold">1</div>
+                <div className="text-gray-600">Projects</div>
+              </div>
+              <div className="bg-[#F8F5FF] p-3 rounded-lg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M3.6001 9H20.4001" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M3.6001 15H20.4001" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12 20.7C13.6569 20.7 15 16.9706 15 12C15 7.02944 13.6569 3.3 12 3.3C10.3431 3.3 9 7.02944 9 12C9 16.9706 10.3431 20.7 12 20.7Z" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <Link href="/projects" className="block w-full">
+              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center">Go to projects</button>
+            </Link>
           </div>
         </div>
 
-        <div className="bg-white p-8 rounded-xl">
+        {/* Content Section */}
+        <div className="bg-[#F5F5DC] p-8 rounded-xl">
           <h2 className="text-3xl font-semibold text-gray-800 mb-2">Let's write some content</h2>
           <p className="text-gray-600 text-xl mb-6">Choose one of our models and create outstanding articles.</p>
           
           <div className="flex gap-2 mb-8">
             <button 
-              className={`pb-2 ${activeTab === 'blog' ? 'text-purple-600 border-b-2 border-purple-600' : 'text-gray-500'}`}
+              className={`pb-2 ${activeTab === 'blog' ? 'text-lg font-semibold text-purple-600 border-b-2 border-purple-600' : 'text-gray-500'}`}
               onClick={() => setActiveTab('blog')}
             >
               Blog Articles
             </button>
             <button 
-              className={`pb-2 ${activeTab === 'ecommerce' ? 'text-purple-600 border-b-2 border-purple-600' : 'text-gray-500'}`}
+              className={`pb-2 ${activeTab === 'ecommerce' ? 'text-lg font-semibold text-purple-600 border-b-2 border-purple-600' : 'text-gray-500'}`}
               onClick={() => setActiveTab('ecommerce')}
             >
               E-commerce
@@ -151,7 +147,7 @@ export default function DashboardPage() {
               <>
                 {/* Fast Writer Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Smart text formatting
                     </span>
@@ -185,7 +181,7 @@ export default function DashboardPage() {
                 </Link>
 
                 {/* Advanced Writer Card */}
-                <Link href="/create" className="block">
+                <Link href="/subscription" className="block">
                   <div className="border-2 border-purple-300 rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-500 cursor-pointer bg-white shadow-md">
                     <div className="absolute -top-3 -right-3 bg-purple-600 text-white px-4 py-1 rounded-full transform rotate-12 shadow-md">
                       Recommended
@@ -219,15 +215,17 @@ export default function DashboardPage() {
                       </div>
                     </div>
 
-                    <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                      Subscribe to use Advanced Writer
-                    </button>
+                    <Link href="/subscription" className="w-full">
+                      <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                        Subscribe to use Advanced Writer
+                      </button>
+                    </Link>
                   </div>
                 </Link>
 
                 {/* Neuron Writer Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white shadow-md border rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <div className="absolute -top-3 -right-3 bg-gray-800 text-white px-4 py-1 rounded-full transform rotate-12">
                       NEURON
                     </div>
@@ -267,7 +265,7 @@ export default function DashboardPage() {
               <>
                 {/* E-commerce Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       E-commerce
                     </span>
@@ -302,7 +300,7 @@ export default function DashboardPage() {
 
                 {/* Product Description Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Product Descriptions
                     </span>
@@ -337,7 +335,7 @@ export default function DashboardPage() {
 
                 {/* Meta Description Card */}
                 <Link href="/create" className="block">
-                  <div className="border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Meta Content
                     </span>

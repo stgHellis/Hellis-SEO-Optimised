@@ -1,11 +1,17 @@
+import { Navbar } from '@/components/shared/navbar';
 import React from 'react';
 
 const Features = () => {
   return (
     <div className="min-h-screen py-24 sm:py-32">
+      <div className="mb-24">
+        <Navbar />
+      </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">Features</h2>
+          <div className="text-3xl">
+            <h2 className="text-base font-semibold leading-7 text-indigo-600 mb-16">Features</h2>
+          </div>          
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-400 sm:text-4xl">
             Everything you need for SEO optimization
           </p>
