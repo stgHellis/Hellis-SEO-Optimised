@@ -19,12 +19,16 @@ export default function PBNManagementPage() {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
-            <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
-              Upgrade Plan
-            </Button>
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-              Create Content
-            </Button>
+            <Link href="/subscription">
+              <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
+                Upgrade Plan
+              </Button>
+            </Link>
+            <Link href="/create-content">
+              <Button className="p-3 w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                Create Content
+              </Button>
+            </Link>
           </div>
         </div>
 

@@ -1,10 +1,24 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sidebar } from '@/components/Sidebar';
+import { useProjects } from "@/store/useProjects";
 
 const AIInternalLinking = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [project, setProject] = useState("");
+  const { projects } = useProjects();
+
+  // Set the first project as default when projects load
+  useEffect(() => {
+    if (projects.length > 0 && !project) {
+      setProject(projects[0].name);
+    }
+  }, [projects, project]);
+
   return (
     <div className="min-h-screen bg-[#F5F5DC] flex">
       <Sidebar />
@@ -20,12 +34,16 @@ const AIInternalLinking = () => {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
-            <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
-              Upgrade Plan
-            </Button>
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-              Create Content
-            </Button>
+            <Link href="/subscription">
+              <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
+                Upgrade Plan
+              </Button>
+            </Link>
+            <Link href="/create-content">
+              <Button className="p-3 w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                Create Content
+              </Button>
+            </Link>
           </div>
         </div>
           {/* Header with Buttons*/}
@@ -50,13 +68,21 @@ const AIInternalLinking = () => {
 
       {/* Project Selection */}
       <div className="bg-white border-radus-lg rounded-lg p-6 max-w-2xl mx-auto text-center">
-        <h2 className="text-4xl font-semibold mb-4 mt-12">Select project</h2>
-        <p className="text-gray-500 mb-8 text-lg mt-12">
-          Choose the project for which you want to implement AI internal linking. (WordPress integration required)
-        </p>
-        <select className="w-full p-3 border border-gray-300 rounded-lg bg-white mb-12">
-          <option value="">Select...</option>
-        </select>
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Select project</h2>
+          <p className="text-gray-600 mb-4">Choose the project for which you want to implement AI internal linking.</p>
+          <select
+            value={project}
+            onChange={(e) => setProject(e.target.value)}
+            className="w-full p-2 border rounded bg-gray-100"
+          >
+            {projects.map((proj) => (
+              <option key={proj.name} value={proj.name}>
+                {proj.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
     </div>

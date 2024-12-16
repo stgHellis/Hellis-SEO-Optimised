@@ -24,9 +24,11 @@ export default function CreateContentPage() {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
-            <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
-              Upgrade Plan
-            </Button>
+            <Link href="/subscription">
+              <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
+                Upgrade Plan
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -54,7 +56,7 @@ export default function CreateContentPage() {
             {activeTab === 'blog' ? (
               <>
                 {/* Fast Writer Card */}
-                <Link href="/create" className="block">
+                <Link href="/create-content/hellis-seo-01" className="block">
                   <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Smart text formatting
@@ -82,9 +84,11 @@ export default function CreateContentPage() {
                       </div>
                     </div>
 
-                    <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                      Create Content
-                    </button>
+                    <Link href="/create-content/hellis-seo-01" className="w-full">
+                      <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                        Create Content
+                      </button>
+                    </Link>
                   </div>
                 </Link>
 

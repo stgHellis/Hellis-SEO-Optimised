@@ -4,10 +4,23 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Sidebar } from "@/components/Sidebar";
+import { useProjects } from "@/store/useProjects";
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState<'blog' | 'ecommerce'>('blog');
   const [currentTime, setCurrentTime] = useState('');
+  const [projectCount, setProjectCount] = useState(0);
+
+  useEffect(() => {
+    setProjectCount(useProjects.getState().projects.length);
+    
+    // Subscribe to store changes
+    const unsubscribe = useProjects.subscribe(
+      state => setProjectCount(state.projects.length)
+    );
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -22,18 +35,22 @@ export default function DashboardPage() {
 
       {/* Main Content */}
       <div className="flex-1 ml-64 p-8">
-        <div className="flex justify-between items-center mb-10 mt-5">
+        <div className="flex justify-between items-center mb-6">
           <div className="flex items-center gap-4">
             <h1 className="text-4xl font-semibold">Dashboard</h1>
           </div>
           <div className="flex items-center gap-4">
-          <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
-            <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
-              Upgrade Plan
-            </Button>
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">
-              Create Content
-            </Button>
+            <span className="text-gray-600 font-semibold">3 Articles left ( 15 tokens )</span>
+            <Link href="/subscription">
+              <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
+                Upgrade Plan
+              </Button>
+            </Link>
+            <Link href="/create-content">
+              <Button className="p-3 w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                Create Content
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -104,8 +121,8 @@ export default function DashboardPage() {
           <div className="bg-white p-6 rounded-xl">
             <div className="flex justify-between items-start mb-4">
               <div>
-                <div className="text-[40px] font-bold">1</div>
-                <div className="text-gray-600">Projects</div>
+                <div className="text-[40px] font-bold">{projectCount}</div>
+                <div className="text-gray-600">Project{projectCount !== 1 ? 's' : ''}</div>
               </div>
               <div className="bg-[#F8F5FF] p-3 rounded-lg">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +163,7 @@ export default function DashboardPage() {
             {activeTab === 'blog' ? (
               <>
                 {/* Fast Writer Card */}
-                <Link href="/create" className="block">
+                <Link href="/create-content/hellis-seo-01" className="block">
                   <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Smart text formatting
@@ -216,9 +233,9 @@ export default function DashboardPage() {
                     </div>
 
                     <Link href="/subscription" className="w-full">
-                      <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                      <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
                         Subscribe to use Advanced Writer
-                      </button>
+                      </Button>
                     </Link>
                   </div>
                 </Link>
