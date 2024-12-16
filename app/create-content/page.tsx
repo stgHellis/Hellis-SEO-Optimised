@@ -37,7 +37,7 @@ export default function CreateContentPage() {
           <h2 className="text-3xl font-semibold text-gray-800 mb-2">Let's write some content</h2>
           <p className="text-gray-600 text-xl mb-6">Choose one of our models and create outstanding articles.</p>
           
-          <div className="flex gap-2 mb-10 mt-16">
+          <div className="flex gap-2 mb-10 mt-16 border-b-2 border-gray-400">
             <button 
               className={`pb-2 ${activeTab === 'blog' ? 'text-purple-600 text-lg font-semibold border-b-2 border-purple-600' : 'text-gray-500'}`}
               onClick={() => setActiveTab('blog')}

@@ -59,7 +59,7 @@ const AIInternalLinking = () => {
       </div> 
 
       {/* Warning Box */}
-      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-12 mt-24">
+      <div className="max-w-5xl mx-auto text-center bg-purple-50 border border-purple-200 rounded-lg p-4 mb-12 mt-24">
         <p className="text-purple-600 text-lg">
           This feature works only for WordPress-based sites. Before you begin, make sure that you have added WordPress integration to your project. If you are unsure how to do this, please{' '}
           <a href="#" className="underline">read our guide</a>.

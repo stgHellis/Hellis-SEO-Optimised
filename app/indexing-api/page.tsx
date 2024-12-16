@@ -42,7 +42,7 @@ export default function IndexingAPIPage() {
         </div>
 
         {/* Info Box */}
-        <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-12">
+        <div className="max-w-5xl mx-auto bg-purple-50 border border-purple-200 rounded-lg p-6 mb-12">
           <div className="flex justify-between items-center">
             <p className="text-purple-600 text-lg">
               Setup your first Indexing API project to start using the tool.
@@ -54,7 +54,7 @@ export default function IndexingAPIPage() {
         </div>
 
         {/* Content area - will be populated once a project is created */}
-        <div className="bg-white rounded-lg p-8">
+        <div className="max-w-5xl mx-auto bg-white rounded-lg p-8">
           {/* Project configuration and indexing tools will appear here */}
         </div>
       </div>

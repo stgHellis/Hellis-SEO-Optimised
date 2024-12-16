@@ -41,9 +41,9 @@ export default function PBNManagementPage() {
         </div>
 
         {/* Info Box */}
-        <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-12">
+        <div className="max-w-6xl mx-auto bg-purple-50 border border-purple-200 rounded-lg p-6 mb-12">
           <div className="flex justify-between items-center">
-            <p className="text-purple-600 text-lg">
+            <p className="text-purple-600 text-lg justify-center">
               You have no project with the <strong>PBN Management</strong> plugin enabled. To do this, go to the <Link href="/projects" className="text-purple-700 underline">Projects</Link> tab, then go to <strong>Integrations</strong> for the project you want to manage, and enable the plugin. Remember that the PBN Management tool only works for websites based on WordPress.
             </p>
             <Link href="/projects">
@@ -55,7 +55,7 @@ export default function PBNManagementPage() {
         </div>
 
         {/* Content area - will be populated once a project is selected */}
-        <div className="bg-white rounded-lg p-8">
+        <div className="max-w-6xl mx-auto bg-white rounded-lg p-8">
           {/* Content will be added here when a project with PBN Management is enabled */}
         </div>
       </div>

@@ -163,7 +163,7 @@ export default function DashboardPage() {
             {activeTab === 'blog' ? (
               <>
                 {/* Fast Writer Card */}
-                <Link href="/create-content/hellis-seo-01" className="block">
+                <Link href="/create-content/hellis-seo-01">
                   <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Smart text formatting
@@ -198,7 +198,7 @@ export default function DashboardPage() {
                 </Link>
 
                 {/* Advanced Writer Card */}
-                <Link href="/subscription" className="block">
+                <Link href="/subscription">
                   <div className="border-2 border-purple-300 rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-500 cursor-pointer bg-white shadow-md">
                     <div className="absolute -top-3 -right-3 bg-purple-600 text-white px-4 py-1 rounded-full transform rotate-12 shadow-md">
                       Recommended
@@ -241,7 +241,7 @@ export default function DashboardPage() {
                 </Link>
 
                 {/* Neuron Writer Card */}
-                <Link href="/create" className="block">
+                <Link href="/create">
                   <div className="bg-white shadow-md border rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <div className="absolute -top-3 -right-3 bg-gray-800 text-white px-4 py-1 rounded-full transform rotate-12">
                       NEURON
@@ -281,7 +281,7 @@ export default function DashboardPage() {
             ) : (
               <>
                 {/* E-commerce Card */}
-                <Link href="/create" className="block">
+                <Link href="/create">
                   <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       E-commerce
@@ -316,7 +316,7 @@ export default function DashboardPage() {
                 </Link>
 
                 {/* Product Description Card */}
-                <Link href="/create" className="block">
+                <Link href="/create">
                   <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Product Descriptions
@@ -351,7 +351,7 @@ export default function DashboardPage() {
                 </Link>
 
                 {/* Meta Description Card */}
-                <Link href="/create" className="block">
+                <Link href="/create">
                   <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       Meta Content
