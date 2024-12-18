@@ -144,7 +144,7 @@ export default function DashboardPage() {
           <h2 className="text-3xl font-semibold text-gray-800 mb-2">Let's write some content</h2>
           <p className="text-gray-600 text-xl mb-6">Choose one of our models and create outstanding articles.</p>
           
-          <div className="flex gap-2 mb-8">
+          <div className="mt-10 flex gap-2 mb-10 border-b border-gray-400">
             <button 
               className={`pb-2 ${activeTab === 'blog' ? 'text-lg font-semibold text-purple-600 border-b-2 border-purple-600' : 'text-gray-500'}`}
               onClick={() => setActiveTab('blog')}

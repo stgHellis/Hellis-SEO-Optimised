@@ -80,9 +80,11 @@ export default function ArticlesPage() {
             <p className="text-purple-600 text-lg mb-4">
               You don't have any categories yet. Select one of our models and create outstanding content.
             </p>
-            <Button className="mt-8 bg-purple-600 hover:bg-purple-700 text-white">
-              Create Category Description
-            </Button>
+            <Link href="/create-content/category-description">
+              <Button className="mt-8 bg-purple-600 hover:bg-purple-700 text-white">
+                Create Category Description
+              </Button>
+            </Link>
           </div>
         )}
       </div>

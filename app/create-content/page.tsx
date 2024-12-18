@@ -202,10 +202,11 @@ export default function CreateContentPage() {
                         <span className="text-gray-600">Personalization</span>
                       </div>
                     </div>
-
-                    <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                      Create Content
-                    </button>
+                    <Link href="/create-content/category-description">
+                      <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                        Create Description Content
+                      </Button>
+                    </Link>
                   </div>
                 </Link>
 

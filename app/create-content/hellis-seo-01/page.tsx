@@ -82,7 +82,7 @@ const HellisSeoPage = () => {
         </div>
 
         {/* Stepper */}
-        <div className="flex justify-between items-center mt-24 mb-24">
+        <div className="max-w-5xl mx-auto flex justify-between items-center mt-24 mb-24">
           {steps.map((step, index) => (
             <div key={step.id} className="flex flex-col items-center">
               <div className="flex items-center">
@@ -105,7 +105,7 @@ const HellisSeoPage = () => {
         </div>
         
         {/* Content Layout */}
-        <div className="flex gap-6 mt-8">
+        <div className="max-w-7xl mx-auto flex gap-6 mt-8">
           {/* Main Content Card */}
           <Card className="flex-1 p-8">
             {currentStep === 1 && (
@@ -526,7 +526,7 @@ const HellisSeoPage = () => {
           </Card>
 
           {/* Summary Panel */}
-          <Card className="w-80 p-4 h-fit">
+          <Card className="w-96 p-4 h-fit">
             <h3 className="text-xl font-semibold mb-4">Summary</h3>
             <div className="space-y-2">
               <div className="flex justify-between">
