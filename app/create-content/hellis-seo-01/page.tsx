@@ -8,6 +8,7 @@ import { Card } from '@/components/ui/card';
 import { Sidebar } from '@/components/Sidebar';
 import Link from 'next/link';
 import { useProjects } from "@/store/useProjects";
+import { SEO_CONTENT_PROMPT } from '@/prompt';
 
 interface Step {
   id: number;
