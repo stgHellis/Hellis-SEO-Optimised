@@ -24,7 +24,7 @@ export default function ArticlesPage() {
           <div className="flex items-center gap-4">
             <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
             <Link href="/subscription">
-              <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
+              <Button variant="outline" className="border-2 border-gray-800 hover:bg-purple-200">
                 Upgrade Plan
               </Button>
             </Link>
@@ -69,7 +69,7 @@ export default function ArticlesPage() {
             <p className="text-purple-600 text-lg mb-4">
               You don't have any articles. Select one of our models and create outstanding content.
             </p>
-            <Link href="/create-content">
+            <Link href="/create-content/hellis-seo-01">
               <Button className="mt-8 p-3 w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
                 Create Content
               </Button>

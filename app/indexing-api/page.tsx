@@ -20,7 +20,7 @@ export default function IndexingAPIPage() {
           <div className="flex items-center gap-4">
             <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
             <Link href="/subscription">
-              <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
+              <Button variant="outline" className="border-2 border-gray-800 hover:bg-purple-200">
                 Upgrade Plan
               </Button>
             </Link>

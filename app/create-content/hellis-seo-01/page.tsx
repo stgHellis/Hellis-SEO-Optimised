@@ -58,6 +58,16 @@ const HellisSeoPage = () => {
     { id: 5, name: 'Done', completed: currentStep > 5, current: currentStep === 5 },
   ];
 
+  const handlePrevious = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
+  const handleNext = () => {
+    if (currentStep < 5) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#F5F5DC] flex">
       <Sidebar />    
@@ -73,7 +83,7 @@ const HellisSeoPage = () => {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
-            <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
+            <Button variant="outline" className="border-2 border-gray-800 hover:bg-purple-200">
               Upgrade Plan
             </Button>
             <Button className="bg-purple-600 hover:bg-purple-700 text-white">
@@ -118,6 +128,7 @@ const HellisSeoPage = () => {
                   onChange={(e) => setProject(e.target.value)}
                   className="w-full p-2 border rounded bg-gray-100"
                 >
+                  <option value="">Select project</option>
                   {projects.map((proj) => (
                     <option key={proj.name} value={proj.name}>
                       {proj.name}
@@ -399,13 +410,13 @@ const HellisSeoPage = () => {
             )}
 
             {currentStep === 4 && (
-              <div>
-                <h2 className="text-4xl font-semibold mb-4">Review</h2>
-                <p className="text-gray-600 mb-4 text-lg font-semibold">Select Model and check if everything is ok and create your content!</p>
-                <Button className="bg-purple-600 text-white mb-10 mt-10">Latest GPT</Button>
+              <div className="p-6 pr-14">
+                <h2 className="text-4xl font-semibold mb-4 text-center">Review</h2>
+                <p className="text-gray-600 text-lg font-semibold text-center">Select Model and check if everything is ok and create your content!</p>
+                <Button className="bg-purple-600 text-white mt-10 mb-10 items-center hover:bg-purple-700">Latest GPT</Button>
 
                 {/* Table Header */}
-                <div className="grid grid-cols-6 gap-4 mb-4 text-gray-600">
+                <div className="grid grid-cols-6 gap-4 mb-5 text-gray-600">
                   <div className="text-center col-span-2">Topics</div>
                   <div className="text-center">H2s</div>
                   <div className="text-center">FAQ</div>
@@ -503,25 +514,25 @@ const HellisSeoPage = () => {
             )}
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between mt-8">
+            <div className="mt-8 flex justify-between">
               {currentStep > 1 && (
                 <Button
-                  className="bg-gray-300 hover:bg-gray-400 text-gray-600"
-                  variant="ghost"
-                  onClick={() => setCurrentStep(currentStep - 1)}
+                  onClick={handlePrevious}
+                  className="px-6 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
                 >
-                  Back
+                  Previous
                 </Button>
               )}
               <Button
-                className="ml-auto bg-purple-600 hover:bg-purple-700 text-white disabled:bg-gray-300"
-                onClick={() => {
-                  if (currentStep < 5) {
-                    setCurrentStep(currentStep + 1);
-                  }
-                }}
+                onClick={handleNext}
+                disabled={currentStep === 1 && !project}
+                className={`px-6 py-2 rounded ${
+                  currentStep === 1 && !project
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-purple-600 text-white hover:bg-purple-700'
+                }`}
               >
-                {currentStep === 4 ? 'Create Content' : 'Next'}
+                {currentStep === steps.length ? 'Finish' : 'Next'}
               </Button>
             </div>
           </Card>
@@ -553,14 +564,14 @@ const HellisSeoPage = () => {
               <Button
                 variant="outline"
                 className="flex-1 bg-gray-300 hover:bg-gray-400 disabled:bg-gray-300"
-                onClick={() => setCurrentStep(currentStep - 1)}
+                onClick={handlePrevious}
                 disabled={currentStep === 1}
               >
-                Back
+                Previous
               </Button>
               <Button
                 className="flex-1 bg-purple-600 hover:bg-purple-700 text-white disabled:bg-gray-300"
-                onClick={() => setCurrentStep(currentStep + 1)}
+                onClick={handleNext}
                 disabled={
                   (currentStep === 1 && !project) ||
                   (currentStep === 2 && !language) ||

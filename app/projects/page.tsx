@@ -49,7 +49,7 @@ export default function ProjectsPage() {
           <div className="flex items-center gap-4">
             <span className="text-gray-600 font-semibold">3 Articles left (15 tokens)</span>
             <Link href="/subscription">
-              <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
+              <Button variant="outline" className="border-2 border-gray-800 hover:bg-purple-200">
                 Upgrade Plan
               </Button>
             </Link>
@@ -132,22 +132,27 @@ export default function ProjectsPage() {
           {/* Project Rows */}
           {projects.map((project, index) => (
             <div key={index} className="grid grid-cols-5 gap-4 p-6 items-center hover:bg-gray-50">
-              <div className="text-purple-600 text-lg">{project.name}</div>
-              <div>{project.unpublishedArticles}</div>
-              <div>
-                <span className="inline-flex items-center justify-center w-8 h-8 bg-red-100 rounded-full">
-                  <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </span>
-              </div>
-              <div>
-                <span className="inline-flex items-center justify-center w-8 h-8 bg-red-100 rounded-full">
-                  <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </span>
-              </div>
+              <Link 
+                href={`/articles?project=${project.name}`}
+                className="contents col-span-4 cursor-pointer"
+              >
+                <div className="text-purple-600 text-lg">{project.name}</div>
+                <div>{project.unpublishedArticles}</div>
+                <div>
+                  <span className="inline-flex items-center justify-center w-8 h-8 bg-red-100 rounded-full">
+                    <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
+                </div>
+                <div>
+                  <span className="inline-flex items-center justify-center w-8 h-8 bg-red-100 rounded-full">
+                    <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
               <div className="flex justify-between items-center">
                 <Button 
                   variant="destructive" 

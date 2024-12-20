@@ -233,7 +233,7 @@ const CategoryDescriptionPage = () => {
             <Link href="/subscription">
               <Button
                 variant="outline"
-                className="border-2 border-gray-800 hover:bg-gray-100"
+                className="border-2 border-gray-800 hover:bg-purple-200"
               >
                 Upgrade Plan
               </Button>

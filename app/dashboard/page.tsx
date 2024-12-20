@@ -42,7 +42,7 @@ export default function DashboardPage() {
           <div className="flex items-center gap-4">
             <span className="text-gray-600 font-semibold">3 Articles left ( 15 tokens )</span>
             <Link href="/subscription">
-              <Button variant="outline" className="border-2 border-gray-800 hover:bg-gray-100">
+              <Button variant="outline" className="border-2 border-gray-800 hover:bg-purple-200">
                 Upgrade Plan
               </Button>
             </Link>
@@ -56,7 +56,7 @@ export default function DashboardPage() {
 
         <div className="bg-purple-600 p-4 rounded-xl text-white flex justify-between items-center mb-16 mt-20">
           <span>⚡ Special Offer: Get 40% off on all plans!</span>
-          <Button variant="secondary" className="bg-white text-purple-600 hover:bg-gray-100">
+          <Button variant="secondary" className="bg-white text-purple-600 hover:bg-purple-200">
             Upgrade Now
           </Button>
         </div>
@@ -78,7 +78,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <Link href="/articles" className="block w-full">
-              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center">Go to articles</button>
+              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200">Go to articles</button>
             </Link>
           </div>
 
@@ -96,7 +96,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <Link href="/publish" className="block w-full">
-              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center">Publish articles</button>
+              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200">Publish articles</button>
             </Link>
           </div>
 
@@ -114,7 +114,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <Link href="/status" className="block w-full">
-              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center">View status</button>
+              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200">View status</button>
             </Link>
           </div>
 
@@ -134,7 +134,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <Link href="/projects" className="block w-full">
-              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center">Go to projects</button>
+              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200">Go to projects</button>
             </Link>
           </div>
         </div>
@@ -191,9 +191,11 @@ export default function DashboardPage() {
                       </div>
                     </div>
 
-                    <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                      Create Content
-                    </button>
+                    <Link href="/create-content/hellis-seo-01">
+                      <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                        Create Content
+                      </Button>
+                    </Link>
                   </div>
                 </Link>
 
@@ -272,16 +274,16 @@ export default function DashboardPage() {
                       </div>
                     </div>
 
-                    <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                    <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
                       Create Content
-                    </button>
+                    </Button>
                   </div>
                 </Link>
               </>
             ) : (
               <>
                 {/* E-commerce Card */}
-                <Link href="/create">
+                <Link href="/create-content/category-description">
                   <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
                     <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
                       E-commerce
@@ -309,9 +311,11 @@ export default function DashboardPage() {
                       </div>
                     </div>
 
-                    <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                      Create Content
-                    </button>
+                    <Link href="/create-content/category-description">
+                      <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                        Create Content
+                      </Button>
+                    </Link>
                   </div>
                 </Link>
 
@@ -344,9 +348,9 @@ export default function DashboardPage() {
                       </div>
                     </div>
 
-                    <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                    <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
                       Create Content
-                    </button>
+                    </Button>
                   </div>
                 </Link>
 
@@ -379,9 +383,9 @@ export default function DashboardPage() {
                       </div>
                     </div>
 
-                    <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
+                    <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
                       Create Content
-                    </button>
+                    </Button>
                   </div>
                 </Link>
               </>
