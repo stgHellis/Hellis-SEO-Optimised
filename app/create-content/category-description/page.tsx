@@ -10,7 +10,7 @@ import OpenAI from "openai";
 import { Card } from "@/components/ui/card";
 import { useProjects } from "@/store/useProjects";
 import { useRouter } from "next/navigation";
-import { SEO_CONTENT_PROMPT } from "@/prompt";
+import { SEO_CONTENT_PROMPT } from "@/app/prompt";
 
 interface Step {
   id: number;

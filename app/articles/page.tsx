@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
 import { Sidebar } from "@/components/Sidebar";
+import { useArticles, Article } from "@/store/useArticles";
 
 export default function ArticlesPage() {
   const [activeTab, setActiveTab] = useState('articles');
+  const { articles, removeArticle } = useArticles();
 
   return (
     <div className="min-h-screen bg-[#F5F5DC] flex">
@@ -65,16 +67,63 @@ export default function ArticlesPage() {
 
         {/* Content */}
         {activeTab === 'articles' ? (
-          <div className="max-w-5xl mx-auto bg-purple-50 rounded-xl p-8 flex flex-col items-center justify-center">
-            <p className="text-purple-600 text-lg mb-4">
-              You don't have any articles. Select one of our models and create outstanding content.
-            </p>
-            <Link href="/create-content/hellis-seo-01">
-              <Button className="mt-8 p-3 w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                Create Content
-              </Button>
-            </Link>
-          </div>
+          <>
+            {/* Search and Order */}
+            <div className="flex justify-between mb-6">
+              <input
+                type="text"
+                placeholder="Search by project or title..."
+                className="w-96 px-4 py-2 border rounded-lg"
+              />
+              <Button variant="outline">Order By ↕</Button>
+            </div>
+
+            {/* Table */}
+            <div className="bg-white rounded-lg shadow">
+              {/* Table Header */}
+              <div className="grid grid-cols-6 gap-4 p-4 border-b text-gray-600">
+                <div>Project</div>
+                <div className="col-span-2">Title</div>
+                <div>Words</div>
+                <div>Characters</div>
+                <div className="flex justify-between">
+                  <span>Status</span>
+                  <span>Delete</span>
+                </div>
+              </div>
+
+              {/* Table Content */}
+              <div>
+                {articles.map((article) => (
+                  <div key={article.id} className="grid grid-cols-6 gap-4 p-4 border-b hover:bg-gray-50">
+                    <div className="text-purple-600">
+                      <Link href={`/projects/${encodeURIComponent(article.project)}/${encodeURIComponent(article.title)}`} className="hover:underline">
+                        {article.project}
+                      </Link>
+                    </div>
+                    <div className="col-span-2">
+                      <Link href={`/projects/${encodeURIComponent(article.project)}/${encodeURIComponent(article.title)}`} className="hover:underline">
+                        {article.title}
+                      </Link>
+                    </div>
+                    <div>{article.words}</div>
+                    <div>{article.characters}</div>
+                    <div className="flex justify-between items-center">
+                      <span className="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">
+                        {article.status}
+                      </span>
+                      <button 
+                        onClick={() => removeArticle(article.id)}
+                        className="text-red-500 hover:text-red-600"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
         ) : (
           <div className="max-w-5xl mx-auto bg-purple-50 rounded-xl p-8 flex flex-col items-center justify-center">
             <p className="text-purple-600 text-lg mb-4">

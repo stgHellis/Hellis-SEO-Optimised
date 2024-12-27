@@ -77,9 +77,9 @@ export default function DashboardPage() {
                 </svg>
               </div>
             </div>
-            <Link href="/articles" className="block w-full">
-              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200">Go to articles</button>
-            </Link>
+            <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200" onClick={() => window.location.href = '/articles'}>
+              Go to articles
+            </button>
           </div>
 
           <div className="bg-white p-6 rounded-xl">
@@ -95,9 +95,9 @@ export default function DashboardPage() {
                 </svg>
               </div>
             </div>
-            <Link href="/publish" className="block w-full">
-              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200">Publish articles</button>
-            </Link>
+            <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200" onClick={() => window.location.href = '/publish'}>
+              Publish articles
+            </button>
           </div>
 
           <div className="bg-white p-6 rounded-xl">
@@ -113,9 +113,9 @@ export default function DashboardPage() {
                 </svg>
               </div>
             </div>
-            <Link href="/status" className="block w-full">
-              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200">View status</button>
-            </Link>
+            <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200" onClick={() => window.location.href = '/status'}>
+              View status
+            </button>
           </div>
 
           <div className="bg-white p-6 rounded-xl">
@@ -133,9 +133,9 @@ export default function DashboardPage() {
                 </svg>
               </div>
             </div>
-            <Link href="/projects" className="block w-full">
-              <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200">Go to projects</button>
-            </Link>
+            <button className="w-full text-[#6366F1] bg-[#F8F5FF] py-2 rounded-lg text-center hover:bg-purple-200" onClick={() => window.location.href = '/projects'}>
+              Go to projects
+            </button>
           </div>
         </div>
 
@@ -163,231 +163,231 @@ export default function DashboardPage() {
             {activeTab === 'blog' ? (
               <>
                 {/* Fast Writer Card */}
-                <Link href="/create-content/hellis-seo-01">
-                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
-                    <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
-                      Smart text formatting
-                    </span>
-                    <h3 className="text-2xl font-semibold mb-2">Fast Writer</h3>
-                    <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Advanced model with user-friendly text formatting.</p>
-                    <p className="text-gray-600 text-lg mb-6">Create a fully formatted article ready for publication on your website.</p>
-                    
-                    <div className="space-y-4 mb-6">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Headings</span>
-                        <span className="text-gray-600">AI generated / manually</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Type</span>
-                        <span className="text-gray-600">Blog article</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Cost</span>
-                        <span className="text-gray-600">1 Article (5 tokens)</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Feature</span>
-                        <span className="text-gray-600">Bulk generator</span>
-                      </div>
+                <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
+                    Smart text formatting
+                  </span>
+                  <h3 className="text-2xl font-semibold mb-2">Fast Writer</h3>
+                  <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Advanced model with user-friendly text formatting.</p>
+                  <p className="text-gray-600 text-lg mb-6">Create a fully formatted article ready for publication on your website.</p>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Headings</span>
+                      <span className="text-gray-600">AI generated / manually</span>
                     </div>
-
-                    <Link href="/create-content/hellis-seo-01">
-                      <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                        Create Content
-                      </Button>
-                    </Link>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Type</span>
+                      <span className="text-gray-600">Blog article</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Cost</span>
+                      <span className="text-gray-600">1 Article (5 tokens)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Feature</span>
+                      <span className="text-gray-600">Bulk generator</span>
+                    </div>
                   </div>
-                </Link>
+
+                  <Button 
+                    onClick={() => window.location.href = '/create-content/hellis-seo-01'} 
+                    className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
+                  >
+                    Create Content
+                  </Button>
+                </div>
 
                 {/* Advanced Writer Card */}
-                <Link href="/subscription">
-                  <div className="border-2 border-purple-300 rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-500 cursor-pointer bg-white shadow-md">
-                    <div className="absolute -top-3 -right-3 bg-purple-600 text-white px-4 py-1 rounded-full transform rotate-12 shadow-md">
-                      Recommended
-                    </div>
-                    <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
-                      SERP Analysis
-                    </span>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-yellow-500">⚡</span>
-                      <h3 className="text-2xl font-semibold">Advanced Writer</h3>
-                    </div>
-                    <p className="text-gray-600 text-lg font-bold mb-6 mt-6">The most advanced model using competitor analysis from SERP.</p>
-                    <p className="text-gray-600 text-lg mb-6">Create content based on an advanced competitor analysis from the SERP.</p>
-                    
-                    <div className="space-y-4 mb-6">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Headings</span>
-                        <span className="text-gray-600">AI generated</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Type</span>
-                        <span className="text-gray-600">Based on source</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Cost</span>
-                        <span className="text-gray-600">1 Article (5 tokens)</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Feature</span>
-                        <span className="text-gray-600">SERP Analysis</span>
-                      </div>
-                    </div>
-
-                    <Link href="/subscription" className="w-full">
-                      <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                        Subscribe to use Advanced Writer
-                      </Button>
-                    </Link>
+                <div className="border-2 border-purple-300 rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-500 cursor-pointer bg-white shadow-md">
+                  <div className="absolute -top-3 -right-3 bg-purple-600 text-white px-4 py-1 rounded-full transform rotate-12 shadow-md">
+                    Recommended
                   </div>
-                </Link>
+                  <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
+                    SERP Analysis
+                  </span>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-yellow-500">⚡</span>
+                    <h3 className="text-2xl font-semibold">Advanced Writer</h3>
+                  </div>
+                  <p className="text-gray-600 text-lg font-bold mb-6 mt-6">The most advanced model using competitor analysis from SERP.</p>
+                  <p className="text-gray-600 text-lg mb-6">Create content based on an advanced competitor analysis from the SERP.</p>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Headings</span>
+                      <span className="text-gray-600">AI generated</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Type</span>
+                      <span className="text-gray-600">Based on source</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Cost</span>
+                      <span className="text-gray-600">1 Article (5 tokens)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Feature</span>
+                      <span className="text-gray-600">SERP Analysis</span>
+                    </div>
+                  </div>
+
+                  <Button 
+                    onClick={() => window.location.href = '/subscription'} 
+                    className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
+                  >
+                    Subscribe to use Advanced Writer
+                  </Button>
+                </div>
 
                 {/* Neuron Writer Card */}
-                <Link href="/create">
-                  <div className="bg-white shadow-md border rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
-                    <div className="absolute -top-3 -right-3 bg-gray-800 text-white px-4 py-1 rounded-full transform rotate-12">
-                      NEURON
-                    </div>
-                    <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
-                      Advanced SEO optimization
-                    </span>
-                    <h3 className="text-2xl font-semibold mb-2">Neuron & Contadu Writer</h3>
-                    <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Advanced SEO optimization through integration with Neuron Writer.</p>
-                    <p className="text-gray-600 text-lg mb-6">Create a perfectly SEO-optimized article ready for publication on your website.</p>
-                    
-                    <div className="space-y-4 mb-6">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Headings</span>
-                        <span className="text-gray-600">AI generated</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Type</span>
-                        <span className="text-gray-600">Based on keywords</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Cost</span>
-                        <span className="text-gray-600">1 Article (5 tokens)</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Feature</span>
-                        <span className="text-gray-600">NeuronWriter Integration</span>
-                      </div>
-                    </div>
-
-                    <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                      Create Content
-                    </Button>
+                <div className="bg-white shadow-md border rounded-xl p-6 relative transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <div className="absolute -top-3 -right-3 bg-gray-800 text-white px-4 py-1 rounded-full transform rotate-12">
+                    NEURON
                   </div>
-                </Link>
+                  <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
+                    Advanced SEO optimization
+                  </span>
+                  <h3 className="text-2xl font-semibold mb-2">Neuron & Contadu Writer</h3>
+                  <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Advanced SEO optimization through integration with Neuron Writer.</p>
+                  <p className="text-gray-600 text-lg mb-6">Create a perfectly SEO-optimized article ready for publication on your website.</p>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Headings</span>
+                      <span className="text-gray-600">AI generated</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Type</span>
+                      <span className="text-gray-600">Based on keywords</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Cost</span>
+                      <span className="text-gray-600">1 Article (5 tokens)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Feature</span>
+                      <span className="text-gray-600">NeuronWriter Integration</span>
+                    </div>
+                  </div>
+
+                  <Button 
+                    onClick={() => window.location.href = '/create'} 
+                    className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
+                  >
+                    Create Content
+                  </Button>
+                </div>
               </>
             ) : (
               <>
                 {/* E-commerce Card */}
-                <Link href="/create-content/category-description">
-                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
-                    <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
-                      E-commerce
-                    </span>
-                    <h3 className="text-3xl font-semibold mb-2">Copy-commerce-001</h3>
-                    <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Advanced model designed for online stores.</p>
-                    <p className="text-gray-600 text-lg mb-6">Create category descriptions that are uniquely customized for your store.</p>
-                    
-                    <div className="space-y-4 mb-6">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Headings</span>
-                        <span className="text-gray-600">AI generated</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Type</span>
-                        <span className="text-gray-600">Category description</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Cost</span>
-                        <span className="text-gray-600">1 Article (5 tokens)</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Feature</span>
-                        <span className="text-gray-600">Personalization</span>
-                      </div>
+                <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
+                    E-commerce
+                  </span>
+                  <h3 className="text-3xl font-semibold mb-2">Copy-commerce-001</h3>
+                  <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Advanced model designed for online stores.</p>
+                  <p className="text-gray-600 text-lg mb-6">Create category descriptions that are uniquely customized for your store.</p>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Headings</span>
+                      <span className="text-gray-600">AI generated</span>
                     </div>
-
-                    <Link href="/create-content/category-description">
-                      <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                        Create Content
-                      </Button>
-                    </Link>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Type</span>
+                      <span className="text-gray-600">Category description</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Cost</span>
+                      <span className="text-gray-600">1 Article (5 tokens)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Feature</span>
+                      <span className="text-gray-600">Personalization</span>
+                    </div>
                   </div>
-                </Link>
+
+                  <Button 
+                    onClick={() => window.location.href = '/create-content/category-description'} 
+                    className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
+                  >
+                    Create Content
+                  </Button>
+                </div>
 
                 {/* Product Description Card */}
-                <Link href="/create">
-                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
-                    <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
-                      Product Descriptions
-                    </span>
-                    <h3 className="text-3xl font-semibold mb-2">Product Writer</h3>
-                    <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Specialized in product descriptions.</p>
-                    <p className="text-gray-600 text-lg mb-6">Create compelling product descriptions that convert.</p>
-                    
-                    <div className="space-y-4 mb-6">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Headings</span>
-                        <span className="text-gray-600">AI generated</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Type</span>
-                        <span className="text-gray-600">Product description</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Cost</span>
-                        <span className="text-gray-600">1 Article (5 tokens)</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Feature</span>
-                        <span className="text-gray-600">SEO Optimization</span>
-                      </div>
+                <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
+                    Product Descriptions
+                  </span>
+                  <h3 className="text-3xl font-semibold mb-2">Product Writer</h3>
+                  <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Specialized in product descriptions.</p>
+                  <p className="text-gray-600 text-lg mb-6">Create compelling product descriptions that convert.</p>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Headings</span>
+                      <span className="text-gray-600">AI generated</span>
                     </div>
-
-                    <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                      Create Content
-                    </Button>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Type</span>
+                      <span className="text-gray-600">Product description</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Cost</span>
+                      <span className="text-gray-600">1 Article (5 tokens)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Feature</span>
+                      <span className="text-gray-600">SEO Optimization</span>
+                    </div>
                   </div>
-                </Link>
+
+                  <Button 
+                    onClick={() => window.location.href = '/create'} 
+                    className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
+                  >
+                    Create Content
+                  </Button>
+                </div>
 
                 {/* Meta Description Card */}
-                <Link href="/create">
-                  <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
-                    <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
-                      Meta Content
-                    </span>
-                    <h3 className="text-3xl font-semibold mb-2">Meta Writer</h3>
-                    <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Optimized meta descriptions and titles.</p>
-                    <p className="text-gray-600 text-lg mb-6">Create SEO-friendly meta content for your products.</p>
-                    
-                    <div className="space-y-4 mb-6">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Headings</span>
-                        <span className="text-gray-600">AI generated</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Type</span>
-                        <span className="text-gray-600">Meta content</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Cost</span>
-                        <span className="text-gray-600">1 Article (5 tokens)</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Feature</span>
-                        <span className="text-gray-600">Meta Optimization</span>
-                      </div>
+                <div className="bg-white border rounded-xl p-6 transition duration-300 ease-in-out hover:shadow-lg hover:border-purple-300 cursor-pointer">
+                  <span className="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm mb-4">
+                    Meta Content
+                  </span>
+                  <h3 className="text-3xl font-semibold mb-2">Meta Writer</h3>
+                  <p className="text-gray-600 text-lg font-bold mb-6 mt-6">Optimized meta descriptions and titles.</p>
+                  <p className="text-gray-600 text-lg mb-6">Create SEO-friendly meta content for your products.</p>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Headings</span>
+                      <span className="text-gray-600">AI generated</span>
                     </div>
-
-                    <Button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                      Create Content
-                    </Button>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Type</span>
+                      <span className="text-gray-600">Meta content</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Cost</span>
+                      <span className="text-gray-600">1 Article (5 tokens)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Feature</span>
+                      <span className="text-gray-600">Meta Optimization</span>
+                    </div>
                   </div>
-                </Link>
+
+                  <Button 
+                    onClick={() => window.location.href = '/create'} 
+                    className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
+                  >
+                    Create Content
+                  </Button>
+                </div>
               </>
             )}
           </div>

@@ -8,7 +8,9 @@ import { Card } from '@/components/ui/card';
 import { Sidebar } from '@/components/Sidebar';
 import Link from 'next/link';
 import { useProjects } from "@/store/useProjects";
-import { SEO_CONTENT_PROMPT } from '@/prompt';
+import { useArticles } from "@/store/useArticles";
+import { SEO_CONTENT_PROMPT } from '@/app/prompt';
+import { useRouter } from 'next/navigation';
 
 interface Step {
   id: number;
@@ -25,8 +27,10 @@ const HellisSeoPage = () => {
   const [keyword, setKeyword] = useState('');
   const [keywords, setKeywords] = useState<string[]>(['sac en bandoulière']);
   const [generatedTitles, setGeneratedTitles] = useState<string[]>([]);
+  const [selectedTitles, setSelectedTitles] = useState<string[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [activeTab, setActiveTab] = useState<'manual' | 'ai' | 'csv'>('manual');
+  const router = useRouter();
   const [selectedOptions, setSelectedOptions] = useState({
     h2: false,
     faq: false,
@@ -41,8 +45,11 @@ const HellisSeoPage = () => {
       image: boolean;
     };
   }>({});
+  const [isGeneratingArticles, setIsGeneratingArticles] = useState(false);
+  const [generatedArticles, setGeneratedArticles] = useState<Array<{ topic: string; title: string; content: string }>>([]);
 
   const { projects } = useProjects();
+  const { addArticle } = useArticles();
 
   useEffect(() => {
     if (projects.length > 0 && !project) {
@@ -65,6 +72,48 @@ const HellisSeoPage = () => {
   const handleNext = () => {
     if (currentStep < 5) {
       setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handleCreateContent = async () => {
+    try {
+      setIsGeneratingArticles(true);
+      const response = await fetch('/api/generate-articles', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          topics: selectedTitles,
+          language
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate articles');
+      }
+
+      const data = await response.json();
+      
+      // Add generated articles to the store
+      data.articles.forEach((article: any) => {
+        addArticle({
+          id: crypto.randomUUID(),
+          project: project,
+          title: article.title,
+          content: article.content,
+          words: article.content.split(/\s+/).length,
+          characters: article.content.length,
+          status: 'completed'
+        });
+      });
+
+      setGeneratedArticles(data.articles);
+      setCurrentStep(5);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsGeneratingArticles(false);
     }
   };
 
@@ -121,8 +170,8 @@ const HellisSeoPage = () => {
           <Card className="flex-1 p-8">
             {currentStep === 1 && (
               <div>
-                <h2 className="text-2xl font-semibold mb-4">Select project</h2>
-                <p className="text-gray-600 mb-4">Choose the project for which you want to implement AI internal linking.</p>
+                <h2 className="text-3xl text-center font-semibold mb-4">Select project</h2>
+                <p className="text-gray-600 mb-10 text-center">Choose the project for which you want to implement AI internal linking.</p>
                 <select
                   value={project}
                   onChange={(e) => setProject(e.target.value)}
@@ -140,8 +189,8 @@ const HellisSeoPage = () => {
 
             {currentStep === 2 && (
               <div>
-                <h2 className="text-2xl font-semibold mb-4">Select language</h2>
-                <p className="text-gray-600 mb-4">Choose the language in which you want to write your content.</p>
+                <h2 className="text-3xl text-center font-semibold mb-4">Select language</h2>
+                <p className="text-gray-600 mb-10 text-center">Choose the language in which you want to write your content.</p>
                 <div className="flex items-center space-x-2 p-2 bg-purple-100 rounded">
                   <span className="bg-purple-600 text-white px-3 py-1 rounded">{language}</span>
                   <select
@@ -180,10 +229,10 @@ const HellisSeoPage = () => {
             )}
 
             {currentStep === 3 && (
-              <div>
-                <h2 className="text-2xl font-semibold mb-4">Add topics</h2>
+              <div className="max-w-7xl mx-auto">
+                <h2 className="text-4xl text-center font-semibold mb-10">Add topics</h2>
                 {/* Tabs */}
-                <div className="flex space-x-4 mb-6 border-b">
+                <div className="items-center flex space-x-4 mb-6 border-b">
                   <button
                     onClick={() => setActiveTab('manual')}
                     className={`pb-2 px-4 ${
@@ -220,18 +269,18 @@ const HellisSeoPage = () => {
                 {/* Manual Tab Content */}
                 {activeTab === 'manual' && (
                   <div>
-                    <p className="text-gray-600 mb-4">Add topics for your articles manually. Each topic is one article.</p>
+                    <p className="text-gray-600 mb-10 text-center">Add topics for your articles manually. Each topic is one article.</p>
                     <div className="mb-4">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Topic:</label>
+                      <label className="block text-xl font-medium text-gray-700 mb-1">Topic:</label>
                       <Input 
                         placeholder="How To Improve Productivity In My Business?"
                         value={keyword}
                         onChange={(e) => setKeyword(e.target.value)}
-                        className="mb-4"
+                        className="mb-8"
                       />
                     </div>
                     <div className="mb-6">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Options</label>
+                      <label className="block text-xl font-medium text-gray-700 mb-6">Options</label>
                       <div className="space-y-2">
                         <label className="flex items-center gap-2">
                           <Checkbox
@@ -271,7 +320,7 @@ const HellisSeoPage = () => {
                         </label>
                       </div>
                     </div>
-                    <Button className="w-full bg-purple-100 text-purple-600 hover:bg-purple-200">
+                    <Button className="w-full text-lg bg-purple-100 text-purple-600 hover:bg-purple-200">
                       Add
                     </Button>
                   </div>
@@ -284,7 +333,7 @@ const HellisSeoPage = () => {
                       Provide the keywords related to the article topics you're interested in. 
                       Based on them, Hellis SEO will generate 10 topic suggestions.
                     </p>
-                    <p className="text-gray-900 text-lg font-semibold text-center my-8">This option is free.</p>
+                    <p className="text-purple-600 text-2xl font-semibold text-center my-8">This option is free.</p>
                     <div className="flex gap-2 mb-8">
                       <Input 
                         placeholder="employee productivity"
@@ -367,10 +416,38 @@ const HellisSeoPage = () => {
                         {/* Display generated titles */}
                         {generatedTitles.length > 0 && (
                           <div className="mt-8 space-y-2">
-                            <h3 className="text-lg font-semibold mb-4">Generated Titles:</h3>
+                            <div className="flex items-center justify-between mb-4">
+                              <h3 className="text-lg font-semibold">Generated Titles:</h3>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => {
+                                  if (selectedTitles.length === generatedTitles.length) {
+                                    setSelectedTitles([]);
+                                  } else {
+                                    setSelectedTitles([...generatedTitles]);
+                                  }
+                                }}
+                              >
+                                {selectedTitles.length === generatedTitles.length ? 'Unselect All' : 'Select All'}
+                              </Button>
+                            </div>
                             {generatedTitles.map((title, index) => (
-                              <div key={index} className="p-3 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                                {title}
+                              <div 
+                                key={index} 
+                                className="flex items-center gap-3 p-3 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
+                              >
+                                <Checkbox
+                                  checked={selectedTitles.includes(title)}
+                                  onCheckedChange={(checked) => {
+                                    if (checked) {
+                                      setSelectedTitles(prev => [...prev, title]);
+                                    } else {
+                                      setSelectedTitles(prev => prev.filter(t => t !== title));
+                                    }
+                                  }}
+                                />
+                                <span className="flex-1">{title}</span>
                               </div>
                             ))}
                           </div>
@@ -426,7 +503,7 @@ const HellisSeoPage = () => {
 
                 {/* Table Content */}
                 <div className="space-y-4">
-                  {generatedTitles.map((title, index) => {
+                  {selectedTitles.map((title, index) => {
                     // Initialize options for this title if they don't exist
                     if (!selectedTitleOptions[title]) {
                       setSelectedTitleOptions(prev => ({
@@ -513,45 +590,83 @@ const HellisSeoPage = () => {
               </div>
             )}
 
+            {currentStep === 5 && (
+              <div className="p-6 flex flex-col items-center">
+                <h2 className="text-4xl font-semibold mb-4 text-center">Well done !</h2>
+                <p className="text-gray-600 text-lg text-center mb-8">
+                  Your content is being created. It will take a few minutes depending on the amount of text to write.
+                </p>
+                <div className="flex gap-4">
+                  <Button 
+                    variant="outline"
+                    className="bg-purple-100 text-purple-600 hover:bg-purple-200 px-8"
+                    onClick={() => {
+                      // Add navigation to articles page
+                      router.push('/articles')
+                    }}
+                  >
+                    Go to articles
+                  </Button>
+                  <Button 
+                    className="bg-purple-600 text-white hover:bg-purple-700 px-8"
+                    onClick={() => {
+                      setCurrentStep(1);
+                      setSelectedTitles([]);
+                      setGeneratedTitles([]);
+                      setSelectedTitleOptions({});
+                    }}
+                  >
+                    Write more content
+                  </Button>
+                </div>
+              </div>
+            )}
+
             {/* Navigation Buttons */}
-            <div className="mt-8 flex justify-between">
-              {currentStep > 1 && (
-                <Button
-                  onClick={handlePrevious}
-                  className="px-6 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
-                >
-                  Previous
-                </Button>
-              )}
+            <div className="flex gap-2 mt-8">
               <Button
-                onClick={handleNext}
-                disabled={currentStep === 1 && !project}
-                className={`px-6 py-2 rounded ${
-                  currentStep === 1 && !project
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-purple-600 text-white hover:bg-purple-700'
-                }`}
+                variant="outline"
+                className="flex-1 bg-gray-300 hover:bg-gray-400 disabled:bg-gray-300"
+                onClick={handlePrevious}
+                disabled={currentStep === 1}
               >
-                {currentStep === steps.length ? 'Finish' : 'Next'}
+                Previous
+              </Button>
+              <Button
+                className="flex-1 bg-purple-600 hover:bg-purple-700 text-white disabled:bg-gray-300"
+                onClick={currentStep === 4 ? handleCreateContent : handleNext}
+                disabled={
+                  (currentStep === 1 && !project) ||
+                  (currentStep === 2 && !language) ||
+                  (currentStep === 4 && isGeneratingArticles) ||
+                  currentStep === 5
+                }
+              >
+                {currentStep === 4 ? (isGeneratingArticles ? "Generating..." : "Create Content") : "Next"}
               </Button>
             </div>
           </Card>
 
           {/* Summary Panel */}
           <Card className="w-96 p-4 h-fit">
-            <h3 className="text-xl font-semibold mb-4">Summary</h3>
+            <h3 className="text-3xl text-center font-semibold mb-4">Summary</h3>
             <div className="space-y-2">
-              <div className="flex justify-between">
+              <div className="flex justify-between mb-5">              
                 <span>Project:</span>
                 <span>{project}</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between mb-3">
                 <span>Articles to write:</span>
-                <span>{topics.length || 0}</span>
+                <span>{selectedTitles.length}</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between mb-3">
+                <span>Articles cost:</span>
+                <span>{selectedTitles.length * 5} Tokens</span>
+              </div>
+              <div className="flex justify-between mb-3">
                 <span>Image cost:</span>
-                <span>{topics.length || 0} Tokens</span>
+                <span>{selectedTitles.reduce((total, title) => 
+                  total + (selectedTitleOptions[title]?.image ? 2 : 0), 0)} Tokens</span>
               </div>
               <div className="flex justify-between">
                 <span>Language:</span>
@@ -571,15 +686,15 @@ const HellisSeoPage = () => {
               </Button>
               <Button
                 className="flex-1 bg-purple-600 hover:bg-purple-700 text-white disabled:bg-gray-300"
-                onClick={handleNext}
+                onClick={currentStep === 4 ? handleCreateContent : handleNext}
                 disabled={
                   (currentStep === 1 && !project) ||
                   (currentStep === 2 && !language) ||
-                  (currentStep === 3 && topics.length === 0) ||
+                  (currentStep === 4 && isGeneratingArticles) ||
                   currentStep === 5
                 }
               >
-                Next
+                {currentStep === 4 ? (isGeneratingArticles ? "Generating..." : "Create Content") : "Next"}
               </Button>
             </div>
           </Card>
