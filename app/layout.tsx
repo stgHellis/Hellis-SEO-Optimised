@@ -1,15 +1,13 @@
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
-import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
-import { Footer } from '@/components/shared/footer'
 import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Hellis SEO AI',
-  description: 'Generate SEO-optimized content with AI',
+  title: 'Hellis SEO',
+  description: 'Optimisez votre contenu SEO avec Hellis',
 }
 
 export default function RootLayout({
@@ -18,18 +16,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster />
-        </ThemeProvider>
-        <Footer />
+        {children}
+        <Toaster />
       </body>
     </html>
   )

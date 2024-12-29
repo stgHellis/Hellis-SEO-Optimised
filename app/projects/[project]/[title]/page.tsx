@@ -16,13 +16,16 @@ export default function EditArticlePage({
   const [articleStatus, setArticleStatus] = useState<'Used' | 'Unused'>('Unused');
   const { articles } = useArticles();
   
+  const decodedProject = decodeURIComponent(params.project);
+  const decodedTitle = decodeURIComponent(params.title);
+  
   const article = articles.find(
-    (a) => a.project === decodeURIComponent(params.project) && a.title === decodeURIComponent(params.title)
+    (a) => a.project === decodedProject && a.title === decodedTitle
   );
 
-  if (!article) return <div>Article not found</div>;
+  const [content, setContent] = useState(article?.content || '');
 
-  const [content, setContent] = useState(article.content);
+  if (!article) return <div>Article not found</div>;
 
   return (
     <div className="min-h-screen bg-[#F5F5DC] flex">
@@ -41,11 +44,11 @@ export default function EditArticlePage({
               Projects
             </Link>
             <span>/</span>
-            <Link href={`/projects/${params.project}`} className="text-purple-600 hover:text-purple-700">
-              {decodeURIComponent(params.project)}
+            <Link href={`/projects/${decodedProject}`} className="text-purple-600 hover:text-purple-700">
+              {decodedProject}
             </Link>
             <span>/</span>
-            <span>{decodeURIComponent(params.title)}</span>
+            <span>{decodedTitle}</span>
           </div>
         </div>
 
@@ -122,8 +125,6 @@ export default function EditArticlePage({
               <button className="p-1">X₂</button>
               <button className="p-1">X²</button>
               <button className="p-1">⬙</button>
-            </div>
-            <div className="flex items-center gap-2 p-2 border rounded-lg">
               <button className="p-1">A</button>
               <button className="p-1">A</button>
               <button className="p-1">≡</button>
@@ -151,8 +152,8 @@ export default function EditArticlePage({
         {/* Right Sidebar */}
         <div className="fixed right-12 top-52 w-96">
           <div className="bg-white rounded-lg p-6 shadow-sm mb-6">
-            <h3 className="text-lg font-semibold mb-4">Featured Image</h3>
-            <div className="border-2 border-dashed rounded-lg p-8 flex items-center justify-center mb-4">
+            <h3 className="text-2xl text-center font-semibold mb-4">Featured Image</h3>
+            <div className="border-2 bg-gray-100 border-dashed rounded-lg p-8 flex items-center justify-center mb-4">
               No image
             </div>
             <Button className="w-full bg-purple-100 text-purple-600 hover:bg-purple-200">
@@ -188,7 +189,7 @@ export default function EditArticlePage({
           <div className="bg-white rounded-lg p-6 shadow-sm">
             <h3 className="text-lg font-semibold mb-4">Notes</h3>
             <textarea
-              className="w-full h-32 p-2 border rounded-lg"
+              className="w-full bg-gray-100 h-32 p-2 border rounded-lg"
               placeholder="Add notes here..."
             />
           </div>

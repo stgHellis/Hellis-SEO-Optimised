@@ -48,12 +48,12 @@ export function Navbar() {
             </Link>
             <div className="flex space-x-4 ml-4">
               <Link href="/login">
-                <Button variant="outline" className="text-gray-400 border-gray-400 hover:text-gray-300 hover:border-gray-300">
+                <Button variant="outline" className="text-lg text-gray-900 border-gray-400 hover:text-green-700 hover:border-gray-300">
                   Login
                 </Button>
               </Link>
               <Link href="/register">
-                <Button variant="outline" className="text-gray-400 border-gray-400 hover:text-gray-300 hover:border-gray-300">
+                <Button variant="outline" className="text-lg text-gray-900 border-gray-400 hover:text-green-700 hover:border-gray-300">
                   Get Started
                 </Button>
               </Link>

@@ -73,7 +73,7 @@ export default function ArticlesPage() {
               <input
                 type="text"
                 placeholder="Search by project or title..."
-                className="w-96 px-4 py-2 border rounded-lg"
+                className="w-96 bg-gray-100 px-4 py-2 border rounded-lg"
               />
               <Button variant="outline">Order By ↕</Button>
             </div>
