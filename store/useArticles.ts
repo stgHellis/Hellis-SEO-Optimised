@@ -8,12 +8,14 @@ export interface Article {
   words: number;
   characters: number;
   status: 'completed' | 'pending';
+  lastModified?: string;
 }
 
 interface ArticlesStore {
   articles: Article[];
   addArticle: (article: Article) => void;
   removeArticle: (id: string) => void;
+  updateArticle: (id: string, updatedArticle: Partial<Article>) => void;
 }
 
 // Mock initial articles
@@ -83,4 +85,9 @@ export const useArticles = create<ArticlesStore>((set) => ({
     set((state) => ({
       articles: state.articles.filter(article => article.id !== id)
     })),
+  updateArticle: (id, updatedArticle) => set((state) => ({
+    articles: state.articles.map((article) =>
+      article.id === id ? { ...article, ...updatedArticle } : article
+    ),
+  })),
 }));
