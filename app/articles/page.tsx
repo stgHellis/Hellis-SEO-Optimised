@@ -127,7 +127,7 @@ export default function ArticlesPage() {
         ) : (
           <div className="max-w-5xl mx-auto bg-purple-50 rounded-xl p-8 flex flex-col items-center justify-center">
             <p className="text-purple-600 text-lg mb-4">
-              You don't have any categories yet. Select one of our models and create outstanding content.
+              You don&apos;t have any categories yet. Select one of our models and create outstanding content.
             </p>
             <Link href="/create-content/category-description">
               <Button className="mt-8 bg-purple-600 hover:bg-purple-700 text-white">
