@@ -4,8 +4,9 @@ import { useArticles } from '@/store/useArticles';
 import { Button } from '@/components/ui/button';
 import { Sidebar } from '@/components/Sidebar';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RichTextEditor } from '@/components/RichTextEditor';
+import Image from 'next/image';
 
 export default function EditArticlePage({
   params,
@@ -16,9 +17,14 @@ export default function EditArticlePage({
   const [articleStatus, setArticleStatus] = useState<'Used' | 'Unused'>('Unused');
   const { articles } = useArticles();
   
-  const decodedProject = decodeURIComponent(params.project);
-  const decodedTitle = decodeURIComponent(params.title);
-  
+  const [decodedProject, setDecodedProject] = useState<string>('');
+  const [decodedTitle, setDecodedTitle] = useState<string>('');
+
+  useEffect(() => {
+    setDecodedProject(decodeURIComponent(params.project));
+    setDecodedTitle(decodeURIComponent(params.title));
+  }, [params.project, params.title]);
+
   const article = articles.find(
     (a) => a.project === decodedProject && a.title === decodedTitle
   );
@@ -117,7 +123,7 @@ export default function EditArticlePage({
   };
 
   const handleFontSize = (increase: boolean) => {
-    const sizes = ['1', '2', '3', '4', '5', '6', '7'];
+    // const sizes = ['1', '2', '3', '4', '5', '6', '7'];
     const selection = window.getSelection();
     if (selection) {
       const range = selection.getRangeAt(0);
@@ -139,13 +145,16 @@ export default function EditArticlePage({
     handleFormat(type === 'ordered' ? 'insertOrderedList' : 'insertUnorderedList');
   };
 
+  const [isExternalLink, setIsExternalLink] = useState(false);
+
   const handleLink = (external: boolean = false) => {
+    setIsExternalLink(external);
     setShowLinkDialog(true);
   };
 
   const handleLinkInsert = () => {
     if (dialogInput) {
-      const url = external ? (dialogInput.startsWith('http') ? dialogInput : `https://${dialogInput}`) : dialogInput;
+      const url = isExternalLink ? (dialogInput.startsWith('http') ? dialogInput : `https://${dialogInput}`) : dialogInput;
       handleFormat('createLink', url);
       setDialogInput('');
       setShowLinkDialog(false);
@@ -202,6 +211,10 @@ export default function EditArticlePage({
     }
   };
 
+  const handleGenerateImage = () => {
+    generateImage(imagePrompt);
+  };
+
   if (!article) return <div>Article not found</div>;
 
   return (
@@ -209,7 +222,7 @@ export default function EditArticlePage({
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 ml-64 p-8">
+      <div className="flex-1 p-8 ml-64">
         {/* Header Navigation */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -460,7 +473,7 @@ export default function EditArticlePage({
             <div className="border-2 bg-gray-100 border-dashed rounded-lg p-8 flex items-center justify-center mb-4 relative group cursor-pointer hover:bg-gray-200 transition-all duration-200 overflow-hidden h-48">
               {featuredImage ? (
                 <>
-                  <img 
+                  <Image 
                     src={featuredImage} 
                     alt="Featured" 
                     className="object-cover w-full h-full absolute inset-0"
@@ -534,7 +547,7 @@ export default function EditArticlePage({
                           <span className="text-sm text-gray-500">Generating your image...</span>
                         </div>
                       ) : previewImage ? (
-                        <img 
+                        <Image 
                           src={previewImage} 
                           alt="AI Generated Preview" 
                           className="max-h-full max-w-full object-contain"
@@ -554,18 +567,28 @@ export default function EditArticlePage({
                       <p className="text-red-500 text-sm mb-4">{generationError}</p>
                     )}
                     {previewImage ? (
-                      <Button
-                        className="bg-green-100 text-green-600 hover:bg-green-200"
-                        onClick={() => {
-                          setFeaturedImage(previewImage);
-                          setShowGenerateImageModal(false);
-                          setPreviewImage(null);
-                          setImagePrompt('');
-                          setGenerationError(null);
-                        }}
-                      >
-                        Use This Image
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button
+                          className="bg-green-100 text-green-600 hover:bg-green-200"
+                          onClick={() => {
+                            setFeaturedImage(previewImage);
+                            setShowGenerateImageModal(false);
+                            setPreviewImage(null);
+                            setImagePrompt('');
+                            setGenerationError(null);
+                          }}
+                        >
+                          Use This Image
+                        </Button>
+                        <Button
+                          className="bg-blue-100 text-blue-600 hover:bg-blue-200"
+                          onClick={() => {
+                            handleGenerateImage();
+                          }}
+                        >
+                          Generate Another
+                        </Button>
+                      </div>
                     ) : (
                       <Button
                         className="bg-purple-100 text-purple-600 hover:bg-purple-200"

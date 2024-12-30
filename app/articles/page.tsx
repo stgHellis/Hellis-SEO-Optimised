@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
 import { Sidebar } from "@/components/Sidebar";
-import { useArticles, Article } from "@/store/useArticles";
+import { useArticles } from "@/store/useArticles";
 
 export default function ArticlesPage() {
   const [activeTab, setActiveTab] = useState('articles');
